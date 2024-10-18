@@ -1,8 +1,20 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { BiUser } from "react-icons/bi";
+import { Button, Flex, IconButton, Text } from "@chakra-ui/react";
+import { BiMenu, BiUser, BiX } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
-
-const NavIcons = () => {
+import { CartContext } from "../context/CartContextProvider";
+import { useContext } from "react";
+interface Props {
+  isSmallScreen: boolean;
+  showMenu: boolean;
+  setShowMenu: (value: boolean) => void;
+}
+const NavIcons = ({
+  isSmallScreen,
+  showMenu,
+  setShowMenu,
+}: Props) => {
+  const context = useContext(CartContext);
+  const cartItems = context?.cartItems;
   return (
     <Flex
       gap="2"
@@ -24,24 +36,37 @@ const NavIcons = () => {
         position="relative"
       >
         <BsBag />
-        <Text
-          width="25px"
-          height="25px"
-          borderRadius="50%"
-          bg="primary.500"
-          color="#FA4604"
-          position="absolute"
-          right="5px"
-          top="-8px"
-          lineHeight="17px"
-          border="1px solid"
-          borderColor="#FA4604"
-          fontSize="md"
-          textAlign="center"
-        >
-          5
-        </Text>
+        {cartItems?.length !== 0 && (
+          <Text
+            position="absolute"
+            top="-10px"
+            right="-10px"
+            bg="#FA4604"
+            color="white"
+            borderRadius="50%"
+            w="30px"
+            h="30px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            fontSize="md"
+          >
+            {cartItems?.length}
+          </Text>
+        )}
       </Button>
+      {isSmallScreen && (
+        <IconButton
+          aria-label="menu icon"
+          minW="auto"
+          icon={showMenu ? <BiX /> : <BiMenu />}
+          variant="none"
+          fontSize="2xl"
+          onClick={() => {
+            setShowMenu(!showMenu);
+          }}
+        />
+      )}
     </Flex>
   );
 };

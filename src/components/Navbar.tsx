@@ -1,8 +1,12 @@
-import { Flex, Box, Container, Heading } from "@chakra-ui/react";
+import { Flex, Box, Container, Heading,useMediaQuery } from "@chakra-ui/react";
 import NavList from "./NavList";
 import NavIcons from "./NavIcons";
+import { useState } from "react";
 
 const Navbar = () => {
+const [isMediumScreen] = useMediaQuery("(min-width: 48em)");
+const isSmallScreen = !isMediumScreen;
+const [showMenu, setShowMenu] = useState(false);
   return (
     <Box
       bg="#fff"
@@ -21,8 +25,17 @@ const Navbar = () => {
             </Box>
             Fashion
           </Heading>
-          <NavList />
-          <NavIcons />
+          <NavList
+            isMediumScreen={isMediumScreen}
+            isSmallScreen={isSmallScreen}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
+          <NavIcons
+            isSmallScreen={isSmallScreen}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
         </Flex>
       </Container>
     </Box>
