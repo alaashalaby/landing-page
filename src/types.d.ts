@@ -20,3 +20,6 @@ interface Category {
   creationAt: string;
   updatedAt: string;
 }
+interface CartItem extends Product {
+  quantity: number;
+}
