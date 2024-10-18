@@ -1,6 +1,9 @@
 import { Box, Image, Heading, Text, Flex, Button } from "@chakra-ui/react";
+import { useContext } from "react";
 import { BiCartAdd } from "react-icons/bi";
+import { CartContext } from "../context/CartContextProvider";
 const ProductCard = ({ product }: { product: Product }) => {
+  const context = useContext(CartContext);
   return (
     <Box shadow="md" rounded="lg" p={2}>
       <Image
@@ -16,7 +19,12 @@ const ProductCard = ({ product }: { product: Product }) => {
         <Text fontWeight="bold" as="span" color="#FA4604">
           {product.price}$
         </Text>
-        <Button colorScheme="orange" rounded="full" fontSize="2xl">
+        <Button
+          colorScheme="orange"
+          rounded="full"
+          fontSize="2xl"
+          onClick={() => context?.addToCart(product)}
+        >
           <BiCartAdd />
         </Button>
       </Flex>
