@@ -85,7 +85,7 @@ const NavList = ({
         <Link to="/">Home</Link>
       </ListItem>
       <ListItem>Story</ListItem>
-      <ListItem>Products</ListItem>
+      <ListItem><Link to="products"> Products</Link></ListItem>
       <ListItem>FAQs</ListItem>
       <ListItem>Contact</ListItem>
     </List>
