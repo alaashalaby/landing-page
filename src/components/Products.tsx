@@ -5,9 +5,12 @@ import {
   Text,
   Container,
   SimpleGrid,
+  Button,
 } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import useProductsQuery from "../api/useProductsQuery";
+import { Link } from "react-router-dom";
+import SkeletonLoading from "./SkeletonLoading";
 
 const Products = () => {
   const { data, isLoading } = useProductsQuery();
@@ -24,10 +27,32 @@ const Products = () => {
       </Center>
       <Container maxW="7xl" mt={7} p={3}>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8}>
-          {products?.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
+          {isLoading ? (
+            Array.from({ length: 8 }).map((_, index) => (
+              <SkeletonLoading key={index} />
+            ))
+          ) : (
+            <>
+              {products?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </>
+          )}
         </SimpleGrid>
+        <Center my="5">
+          <Link to="products">
+            <Button
+              variant="unstyled"
+              fontWeight="bold"
+              color="#fff"
+              bg="#000"
+              rounded="full"
+              px={8}
+            >
+              Show More Products
+            </Button>
+          </Link>
+        </Center>
       </Container>
     </Box>
   );
