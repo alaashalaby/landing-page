@@ -19,6 +19,7 @@ import emptyCartImage from "../assets/emptyCart.png";
 import { useContext } from "react";
 import { BiSolidTrash, BiMinus, BiPlus } from "react-icons/bi";
 import { CartContext } from "../context/CartContextProvider";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const context = useContext(CartContext);
@@ -27,11 +28,24 @@ const CartPage = () => {
     <Box as="section" pt={9}>
       <Container maxW="7xl">
         {cartItems?.length === 0 ? (
-          <Center>
-            <Image src={emptyCartImage} alt="empty cart" />
+          <Center flexDir="column" gap="5" py={8}>
+            <Image src={emptyCartImage} alt="empty cart" boxSize="350" />
+            <Link to="/">
+              <Button
+                _hover={{ bg: "#FA4604" }}
+                textAlign="center"
+                textTransform="uppercase"
+                bg="#000"
+                color="#fff"
+                rounded="lg"
+                p="5"
+              >
+                Continue shopping
+              </Button>
+            </Link>
           </Center>
         ) : (
-          <>
+          <Box py="15">
             <TableContainer>
               <Table variant="simple">
                 <Thead>
@@ -105,7 +119,7 @@ const CartPage = () => {
                 ))}
               </Table>
             </TableContainer>
-          </>
+          </Box>
         )}
       </Container>
     </Box>
