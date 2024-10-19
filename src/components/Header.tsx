@@ -30,7 +30,7 @@ export default Header;
 
 const HeaderContent = () => {
   return (
-    <Box position="absolute" top="45%" left="20%" zIndex={10}>
+    <Box position="absolute" top={{base:"35%" , md:"45%"}} left={{base:"5%" , md:"20%"}} zIndex={10}>
       <Heading as="h1" color="#fff" mb="4" fontWeight="bold">
         Talk TO US
       </Heading>
