@@ -1,19 +1,16 @@
 import { Button, Flex, IconButton, Text } from "@chakra-ui/react";
-import { BiMenu, BiUser, BiX } from "react-icons/bi";
+import { BiMenu, BiX } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
 import { CartContext } from "../context/CartContextProvider";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import FormModal from "./FormModal";
 interface Props {
   isSmallScreen: boolean;
   showMenu: boolean;
   setShowMenu: (value: boolean) => void;
 }
-const NavIcons = ({
-  isSmallScreen,
-  showMenu,
-  setShowMenu,
-}: Props) => {
+const NavIcons = ({ isSmallScreen, showMenu, setShowMenu }: Props) => {
   const context = useContext(CartContext);
   const cartItems = context?.cartItems;
   return (
@@ -27,9 +24,7 @@ const NavIcons = ({
         },
       }}
     >
-      <Button variant="unstyled" color="#454545" fontSize="2xl">
-        <BiUser />
-      </Button>
+      <FormModal />
       <Link to="cart">
         <Button
           variant="unstyled"
