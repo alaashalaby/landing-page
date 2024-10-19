@@ -1,5 +1,6 @@
 import { List, ListItem } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 interface Props {
   isSmallScreen: boolean;
   isMediumScreen: boolean;
@@ -80,7 +81,9 @@ const NavList = ({
       }
       transition="opacity 0.3s ease-in-out, transform 0.3s ease-in-out"
     >
-      <ListItem>Home</ListItem>
+      <ListItem>
+        <Link to="/">Home</Link>
+      </ListItem>
       <ListItem>Story</ListItem>
       <ListItem>Products</ListItem>
       <ListItem>FAQs</ListItem>
