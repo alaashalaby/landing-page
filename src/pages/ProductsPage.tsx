@@ -2,8 +2,12 @@ import { Box, Container, Heading, SimpleGrid } from "@chakra-ui/react";
 import useProductsQuery from "../api/useProductsQuery";
 import ProductCard from "../components/ProductCard";
 import SkeletonLoading from "../components/SkeletonLoading";
+import { useEffect } from "react";
 const ProductsPage = () => {
-  const { data: products , isLoading} = useProductsQuery();
+  const { data: products, isLoading } = useProductsQuery();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <>
       <Box mt={5}>
